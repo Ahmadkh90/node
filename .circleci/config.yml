@@ -5,6 +5,7 @@ jobs:
       - image: docker:stable
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Build Docker image
           command: |
@@ -17,7 +18,6 @@ jobs:
     docker:
       - image: docker:stable-git
     steps:
-      - checkout
       - run:
           name: Push Docker image
           command: |
