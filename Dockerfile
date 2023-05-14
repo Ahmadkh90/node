@@ -1,12 +1,5 @@
-FROM jenkins/jenkins:lts
-
-USER root
-
-# Install the latest version of Docker
-RUN curl -fsSL https://get.docker.com -o get-docker.sh && \
-    sh get-docker.sh && \
-    usermod -aG docker jenkins
-
-USER jenkins
-
-
+]FROM node:12
+COPY nodeapp /nodeapp
+WORKDIR /nodeapp
+RUN npm install
+CMD ["node", "/nodeapp/app.js"]
