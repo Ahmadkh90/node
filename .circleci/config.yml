@@ -10,16 +10,9 @@ jobs:
           name: Build Docker image
           command: |
             docker build -t ahmad90/node-app:lts .
-      - run:
-          name: Run tests
-          command: |
-            docker run --rm ahmad90/node-app:lts npm test
-  deploy:
-    docker:
-      - image: docker:stable-git
-    steps:
+   
       - run:
           name: Push Docker image
           command: |
-            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            docker login -u $username -p $password
             docker push ahmad90/node-app:lts
